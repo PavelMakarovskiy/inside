@@ -1,0 +1,23 @@
+Пример curl запросов:
+
+Запрос для добавления/регистрации пользователя:
+curl -X POST -H "Content-Type: application/json" -d '{"name":"Pavel", "password":"Les"}' http://localhost:8095/auth
+
+Запрос для получения токена:
+curl -X POST -H "Content-Type: application/json" -d '{"name":"Pavel", "password":"Les"}' http://localhost:8095/login
+
+Установление соединения через websocket:
+В задании не указан протокол взаимодействия для передачи сообщений. Мною было принято решение использовать протокол websocket как наиболее подходящий под условия задачи.
+С помощью curl можно проверить только подключение к websocket. Curl не предоставляет возможность отправки сообщений. Как вариант — проверить отправку/получение сообщений можно через Postman.
+Перед запросом необходимо использовать валидный токен.
+Пример запроса установления соединения:
+
+curl -i -N \
+-H "Connection: Upgrade" \
+-H "Upgrade: websocket" \
+-H "Host: localhost:8095" \
+-H "Origin: http://localhost:8095" \
+-H "Authorization: Bearer_eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQb2wiLCJpYXQiOjE2Njc3NjEyMzgsImV4cCI6MTY2Nzc2ODQzOH0.mytaHnFe4f1Gs_jTB7Xfs-X_HrjyfeIp6OWaSf2ioTM" \
+-H "Sec-WebSocket-Key: SGVsbG8sIHdvcmxkIQ==" \
+-H "Sec-WebSocket-Version: 13" \
+http://localhost:8095/message

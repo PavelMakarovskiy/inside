@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/task
+    username: task
+    password: task
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL82Dialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+server:
+    port: 8095
+
+api:
+  security:
+    jwt:
+      token:
+        secret-key: abc123
+        expiration-time: 7200000

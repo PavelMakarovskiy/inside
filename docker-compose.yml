@@ -1,0 +1,18 @@
+version: "3"
+services:
+  app:
+    image: makshipping/insidetask:latest
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/task
+    ports:
+      - '8095:8095'
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: task
+      POSTGRES_PASSWORD: task
+      POSTGRES_DB: task
+    ports:
+      - '5432:5432'
+
